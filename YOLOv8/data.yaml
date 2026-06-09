@@ -6,108 +6,93 @@
 # └── datasets
 #     └── coco  ← downloads here (20.1 GB)
 
-
 # Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
-path: ../datasets/coco  # dataset root dir
-train: train2017.txt  # train images (relative to 'path') 118287 images
-val: val2017.txt  # val images (relative to 'path') 5000 images
-test: test-dev2017.txt  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+path:   # dataset root dir
+train: images/train  # train images (relative to 'path') 128 images
+val: images/val  # val images (relative to 'path') 128 images
+test:  # test images (optional)
 
 # Classes
 names:
-  0: person
-  1: bicycle
-  2: car
-  3: motorcycle
-  4: airplane
-  5: bus
-  6: train
-  7: truck
-  8: boat
-  9: traffic light
-  10: fire hydrant
-  11: stop sign
-  12: parking meter
-  13: bench
-  14: bird
-  15: cat
-  16: dog
-  17: horse
-  18: sheep
-  19: cow
-  20: elephant
-  21: bear
-  22: zebra
-  23: giraffe
-  24: backpack
-  25: umbrella
-  26: handbag
-  27: tie
-  28: suitcase
-  29: frisbee
-  30: skis
-  31: snowboard
-  32: sports ball
-  33: kite
-  34: baseball bat
-  35: baseball glove
-  36: skateboard
-  37: surfboard
-  38: tennis racket
-  39: bottle
-  40: wine glass
-  41: cup
-  42: fork
-  43: knife
-  44: spoon
-  45: bowl
-  46: banana
-  47: apple
-  48: sandwich
-  49: orange
-  50: broccoli
-  51: carrot
-  52: hot dog
-  53: pizza
-  54: donut
-  55: cake
-  56: chair
-  57: couch
-  58: potted plant
-  59: bed
-  60: dining table
-  61: toilet
-  62: tv
-  63: laptop
-  64: mouse
-  65: remote
-  66: keyboard
-  67: cell phone
-  68: microwave
-  69: oven
-  70: toaster
-  71: sink
-  72: refrigerator
-  73: book
-  74: clock
-  75: vase
-  76: scissors
-  77: teddy bear
-  78: hair drier
-  79: toothbrush
-
-
-# Download script/URL (optional)
-download: |
-  from utils.general import download, Path
-  # Download labels
-  segments = True  # segment or box labels
-  dir = Path(yaml['path'])  # dataset root dir
-  url = 'https://github.com/ultralytics/yolov5/releases/download/v1.0/'
-  urls = [url + ('coco2017labels-segments.zip' if segments else 'coco2017labels.zip')]  # labels
-  download(urls, dir=dir.parent)
-  # Download data
-  urls = ['http://images.cocodataset.org/zips/train2017.zip',  # 19G, 118k images
-          'http://images.cocodataset.org/zips/val2017.zip',  # 1G, 5k images
-          'http://images.cocodataset.org/zips/test2017.zip']  # 7G, 41k images (optional)
-  download(urls, dir=dir / 'images', threads=3)
+  0: 6-blank
+  1: 6-CTC-30
+  2: 6-CTC-60
+  3: 6-DOX-30
+  4: 6-DOX-60
+  5: 6-ENR-30
+  6: 6-ENR-60
+  7: 6-FTD-30
+  8: 6-FTD-60
+  9: 6-FZD-30
+  10: 6-FZD-60
+  11: 6-LEV-30
+  12: 6-LEV-60
+  13: 6-NFZ-30
+  14: 6-NFZ-60
+  15: 6-NOR-30
+  16: 6-NOR-60
+  17: 6-OTC-30
+  18: 6-OTC-60
+  19: 6-TC-30
+  20: 6-TC-60
+  21: 8-blank
+  22: 8-CTC-30
+  23: 8-CTC-60
+  24: 8-DOX-30
+  25: 8-DOX-60
+  26: 8-ENR-30
+  27: 8-ENR-60
+  28: 8-FTD-30
+  29: 8-FTD-60
+  30: 8-FZD-30
+  31: 8-FZD-60
+  32: 8-LEV-30
+  33: 8-LEV-60
+  34: 8-NFZ-30
+  35: 8-NFZ-60
+  36: 8-NOR-30
+  37: 8-NOR-60
+  38: 8-OTC-30
+  39: 8-OTC-60
+  40: 8-TC-30
+  41: 8-TC-60
+  42: 6-FTD-5
+  43: 6-FTD-10
+  44: 6-FTD-20
+  45: 6-FTD-40
+  46: 6-FTD-50
+  47: 6-FTD-70
+  48: 6-FTD-80
+  49: 6-FTD-90
+  50: 6-LEV-5
+  51: 6-LEV-10
+  52: 6-LEV-15
+  53: 6-LEV-20
+  54: 6-LEV-25
+  55: 6-LEV-35
+  56: 6-OTC-10
+  57: 6-OTC-20
+  58: 6-OTC-40
+  59: 6-OTC-50
+  60: 6-OTC-70
+  61: 6-OTC-80
+  62: 6-OTC-90
+  63: 8-FTD-10
+  64: 8-FTD-20
+  65: 8-FTD-40
+  66: 8-FTD-50
+  67: 8-FTD-70
+  68: 8-LEV-5
+  69: 8-LEV-10
+  70: 8-LEV-20
+  71: 8-LEV-40
+  72: 8-LEV-50
+  73: 8-LEV-70
+  74: 8-LEV-80
+  75: 8-LEV-90
+  76: 8-OTC-5
+  77: 8-OTC-10
+  78: 8-OTC-20
+  79: 8-OTC-40
+  80: 8-OTC-50
+  81: 8-OTC-70
