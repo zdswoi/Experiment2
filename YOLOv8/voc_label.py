@@ -10,11 +10,12 @@ from shutil import copyfile
 # classes = ["ctc1","ctc2","ctc3","ctc4","ctc5","ctc6","ctc7","ctc8","ctc9","dox1","dox2","dox3","dox4","dox5","dox6","dox7","dox8","dox9","otc1","otc2","otc3","otc4","otc5","otc6","otc7","otc8","otc9","tc1","tc2","tc3","tc4","tc5","tc6","tc7","tc8","tc9"]  # 类别
 # classes = ["0","CTC5","CTC10","CTC20","CTC30","DOX5","DOX10","DOX20","DOX30","OTC5","OTC10","OTC20","OTC30","TC5","TC10","TC20","TC30"]  # 类别
 # classes=["ball"]
-classes = ["6-CTC-30","6-ENR-60","6-FTD-30","6-FTD-60","6-FZD-30","6-LEV-60","6-NFZ-30","6-NFZ-60",
-  "6-NOR-30","6-NOR-60","6-OTC-60","8-blank","8-CTC-60","8-DOX-30","8-FZD-30","8-FZD-60","8-LEV-30","8-LEV-60","8-NFZ-30","8-NFZ-60",
-  "8-NOR-60","8-OTC-60","6-FTD-10","6-FTD-20","6-FTD-40","6-FTD-50",
-  "6-FTD-80","6-FTD-90","6-LEV-10","6-LEV-15","6-LEV-20","6-LEV-25","6-LEV-35","8-FTD-10","8-FTD-20","8-FTD-70",
-  "8-LEV-50","8-OTC-10","8-OTC-40","8-OTC-50"]
+classes = ["6-blank","6-CTC-30","6-CTC-60","6-DOX-30","6-DOX-60","6-ENR-30","6-ENR-60","6-FTD-30","6-FTD-60","6-FZD-30","6-FZD-60","6-LEV-30","6-LEV-60","6-NFZ-30","6-NFZ-60",
+  "6-NOR-30","6-NOR-60","6-OTC-30","6-OTC-60","6-TC-30","6-TC-60","8-blank","8-CTC-30","8-CTC-60","8-DOX-30","8-DOX-60","8-ENR-30","8-ENR-60","8-FTD-30","8-FTD-60","8-FZD-30","8-FZD-60","8-LEV-30","8-LEV-60","8-NFZ-30","8-NFZ-60",
+  "8-NOR-30","8-NOR-60","8-OTC-30","8-OTC-60","8-TC-30","8-TC-60","6-FTD-5","6-FTD-10","6-FTD-20","6-FTD-40","6-FTD-50","6-FTD-70",
+  "6-FTD-80","6-FTD-90","6-LEV-5","6-LEV-10","6-LEV-15","6-LEV-20","6-LEV-25","6-LEV-35","6-OTC-10","6-OTC-20","6-OTC-40","6-OTC-50","6-OTC-70","6-OTC-80","6-OTC-90","8-FTD-10","8-FTD-20","8-FTD-40","8-FTD-50","8-FTD-70",
+  "8-LEV-5","8-LEV-10","8-LEV-20","8-LEV-40","8-LEV-50","8-LEV-70","8-LEV-80","8-LEV-90","8-OTC-5","8-OTC-10","8-OTC-20","8-OTC-40","8-OTC-50","8-OTC-70"]
+
 
 TRAIN_RATIO = 80
 
@@ -45,8 +46,8 @@ def convert(size, box):
 
 
 def convert_annotation(image_id):
-    in_file = open('datasets/VOC20071/Annotations/%s.xml' % image_id)  # 1代表师姐，没有1的是自己的第一个
-    out_file = open('datasets/VOC20071/YOLOLabels/%s.txt' % image_id, 'w')
+    in_file = open('datasets/VOC2007/Annotations/%s.xml' % image_id)  # 1代表师姐，没有1的是自己的第一个
+    out_file = open('datasets/VOC2007/YOLOLabels/%s.txt' % image_id, 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
     size = root.find('size')
@@ -73,7 +74,7 @@ wd = os.getcwd()
 data_base_dir = os.path.join(wd, "datasets/")
 if not os.path.isdir(data_base_dir):
     os.mkdir(data_base_dir)
-work_sapce_dir = os.path.join(data_base_dir, "VOC20071/")
+work_sapce_dir = os.path.join(data_base_dir, "VOC2007/")
 if not os.path.isdir(work_sapce_dir):
     os.mkdir(work_sapce_dir)
 annotation_dir = os.path.join(work_sapce_dir, "Annotations/")
